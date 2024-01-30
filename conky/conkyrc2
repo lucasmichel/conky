@@ -1,0 +1,170 @@
+--[[
+first comment line
+second comment line
+]]
+
+conky.config = {
+--Various settings
+
+background = true, -- forked to background 
+cpu_avg_samples = 2, -- The number of samples to average for CPU monitoring. 
+diskio_avg_samples = 10, -- The number of samples to average for disk I/O monitoring. 
+double_buffer = true, -- Use the Xdbe extension? (eliminates flicker) 
+if_up_strictness = 'address', -- how strict if testing interface is up - up, link or address 
+net_avg_samples = 2, -- The number of samples to average for net data 
+no_buffers = true, -- Subtract (file system) buffers from used memory? 
+temperature_unit = 'celsius', -- fahrenheit or celsius 
+text_buffer_size = 2048, -- size of buffer for display of content of large variables - default 256 
+update_interval = 1, -- update interval 
+imlib_cache_size = 0, -- disable image cache to get a new spotify cover per song
+
+--Placement
+
+alignment = 'bottom_right', 
+gap_x = 1108, -- pixels between right or left border 
+gap_y = -1, -- pixels between bottom or left border 
+-- minimum_height = 600, -- minimum height of window 
+minimum_size = 6, 3,
+maximum_width = 1000,
+minimum_width = 250,
+
+--Graphical
+
+border_inner_margin = 10, -- margin between border and text 
+border_outer_margin = 5, -- margin between border and edge of window 
+border_width = 0, -- border width in pixels 
+default_bar_width = 80, -- default is 0 - full width 
+default_bar_height = 10, -- default is 6 
+default_gauge_height = 25, -- default is 25 
+default_gauge_width =40, -- default is 40 
+default_graph_height = 40, -- default is 25 
+default_graph_width = 0, -- default is 0 - full width 
+default_shade_color = '#000000', -- default shading colour 
+default_outline_color = '#000000', -- default outline colour 
+--draw_borders = false, -- draw borders around text 
+draw_graph_borders = true, -- draw borders around graphs 
+--draw_shades = false, -- draw shades 
+--draw_outline = false, -- draw outline 
+stippled_borders = 0, -- dashing the border
+
+--Textual
+
+extra_newline = false, -- extra newline at the end - for asesome's wiboxes 
+format_human_readable = true, -- KiB, MiB rather then number of bytes 
+font = 'Roboto Mono:size=10', -- font for complete conky unless in code defined 
+max_text_width = 0, -- 0 will make sure line does not get broken if width too smal 
+max_user_text = 16384, -- max text in conky default 16384 
+override_utf8_locale = true, -- force UTF8 requires xft 
+short_units = true, -- shorten units from KiB to k 
+top_name_width = 21, -- width for $top name value default 15 
+top_name_verbose = false, -- If true, top name shows the full command line of each process - Default value is false. 
+uppercase = false, -- uppercase or not 
+use_spacer = 'none', -- adds spaces around certain objects to align - default none 
+use_xft = true, -- xft font - anti-aliased font 
+xftalpha = 1, -- alpha of the xft font - between 0-1
+
+--Windows
+
+own_window = true, -- create your own window to draw 
+own_window_argb_value = 0, -- real transparency - composite manager required 0-255 
+own_window_argb_visual = true, -- use ARGB - composite manager required 
+own_window_colour = '#000000', -- set colour if own_window_transparent no 
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager', -- if own_window true - just hints - own_window_type sets it 
+own_window_transparent = false, -- if own_window_argb_visual is true sets background opacity 0% 
+own_window_title = 'system_conky', -- set the name manually - default conky "hostname" 
+own_window_type = 'dock', -- if own_window true options are: normal/override/dock/desktop/panel
+
+--Colours
+
+default_color = '#CB9D7A', -- default color and border color 
+color1 = '#FF0000', 
+color2 = '#C17D12', 
+color3 = '#cccccc', 
+color4 = '#D9BC83', 
+color5 = '#BF4E0C', 
+color6 = '#FFFFFF',
+
+--Signal Colours 
+color7 = '#1F7411', 
+
+--green 
+color8 = '#FFA726', 
+
+--orange 
+color9 = '#F1544B', --firebrick
+
+draw_shades = no,
+
+draw_outline = no,
+
+draw_borders = no,
+
+-- Stippled borders?
+stippled_borders = 0,
+
+-- border margins
+border_margin = 1,
+
+-- border width
+border_width = 1,
+
+-- Default colors and also border colors
+default_color = '#FFFFFF',
+-- default_shade_color black
+-- default_outline_color white
+own_window_colour = white,
+
+draw_graph_borders = no,
+
+-- Text alignment, other possible values are commented
+-- alignment top_left
+alignment = top_right,
+-- alignment bottom_left
+-- alignment bottom_right
+
+-- set to yes if you want all text to be in uppercase
+uppercase = no,
+
+-- Force UTF8? note that UTF8 support required XFT
+override_utf8_locale = yes,
+
+-- Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer = none,
+
+}
+
+conky.text = [[
+SYSTEM ${hr 2}
+${voffset 2}${font OpenLogos:size=16}u${font}   Kernel:  ${alignr}${kernel}
+${font StyleBats:size=16}A${font}   CPU: ${cpu}% ${alignr}${cpubar cpu0 8,60}
+${font StyleBats:size=16}g${font}   RAM: $memperc% ${alignr}${membar 8,60}
+${font StyleBats:size=16}j${font}   SWAP: $swapperc% ${alignr}${swapbar 8,60}
+${font StyleBats:size=16}q${font}   Uptime: ${alignr}${uptime}
+${font StyleBats:size=16}k${font}   Processes: ${alignr}$processes ($running_processes running)
+${font StyleBats:size=16}l${font}   CPU Temp: ${alignr}${exec sensors | grep 'Package id 0'|cut -f2 -d '+'|cut -f1 -d'.'}ºC
+
+PROCESSES ${hr 2}
+${font StyleBats:size=16}k${font} $alignr CPU% MEM%
+${top name 1}$alignr${top cpu 1}${top mem 1}
+${top name 2}$alignr${top cpu 2}${top mem 2}
+${top name 3}$alignr${top cpu 3}${top mem 3}
+${top name 4}$alignr${top cpu 4}${top mem 4}
+
+HD ${hr 2}
+${font Pie charts for maps:size=14}7${font}   ${voffset -5}Disks:
+${voffset 4}Sistema: ${fs_free /} / ${fs_size /} ${alignr}${fs_bar 8,60 /}
+
+NETWORK ${hr 2}
+${if_existing /proc/net/route enp1s0}
+${voffset -6}${font PizzaDude Bullets:size=14}O${font}   Up: ${upspeed enp1s0} kb/s ${alignr}${upspeedgraph enp1s0 8,60}
+${voffset 4}${font PizzaDude Bullets:size=14}U${font}   Down: ${downspeed enp1s0} kb/s ${alignr}${downspeedgraph enp1s0 8,60}
+${voffset 4}${font PizzaDude Bullets:size=14}N${font}   Upload: ${alignr}${totalup enp1s0}
+${voffset 4}${font PizzaDude Bullets:size=14}T${font}   Download: ${alignr}${totaldown enp1s0}
+${else if_existing /proc/net/route wlp2s0} 
+${voffset -6}${font PizzaDude Bullets:size=14}O${font}   Up: ${upspeed wlp2s0} kb/s ${alignr}${upspeedgraph wlp2s0 8,60}
+${voffset 4}${font PizzaDude Bullets:size=14}U${font}   Down: ${downspeed wlp2s0} kb/s ${alignr}${downspeedgraph wlp2s0 8,60}
+${voffset 4}${font PizzaDude Bullets:size=14}N${font}   Upload: ${alignr}${totalup wlp2s0}
+${voffset 4}${font PizzaDude Bullets:size=14}T${font}   Download: ${alignr}${totaldown wlp2s0}
+${voffset 4}${font PizzaDude Bullets:size=14}Z${font}   Signal: ${wireless_link_qual wlp2s0}% ${alignr}${wireless_link_bar 8,60 wlp2s0}
+${endif}
+]];

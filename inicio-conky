@@ -1,0 +1,6 @@
+#!/bin/sh
+sleep 0
+conky -d -c ~/.conky/conkyrc &
+
+conky -d -c ~/.conky/conkyrc2 &
+exit

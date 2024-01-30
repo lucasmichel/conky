@@ -1,0 +1,90 @@
+--[[
+first comment line
+second comment line
+]]
+
+conky.config = {
+	-- Update interval in seconds
+	update_interval = 1,
+	background = true,
+
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	temperature_unit = 'celsius',
+
+	-- Use double buffering (reduces flicker, may not work for everyone)
+	double_buffer = true,
+
+	-- Subtract file system buffers from used memory?
+	no_buffers = true,
+	text_buffer_size = 2048,
+
+	alignment = 'bottom_left',
+	--gap_x = 1120, -- pixels between right or left border 
+	--gap_y = 520, -- pixels between bottom or left border 
+	gap_x = 1130, -- pixels between right or left border 
+	gap_y = 550, -- pixels between bottom or left border 
+	
+	--minimum_size = 270, 130,
+	--maximum_width = 370,
+	--minimum_height = 10,
+	minimum_size = 6, 3,
+	maximum_width = 1500,
+	minimum_width = 250,
+
+	--Windows
+	own_window = true, -- create your own window to draw 
+	own_window_argb_value = 0, -- real transparency - composite manager required 0-255 
+	own_window_argb_visual = true, -- use ARGB - composite manager required 
+	own_window_colour = '#000000', -- set colour if own_window_transparent no 
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager', -- if own_window true - just hints - own_window_type sets it 
+	own_window_transparent = false, -- if own_window_argb_visual is true sets background opacity 0% 
+	own_window_title = 'system_conky', -- set the name manually - default conky "hostname" 
+	own_window_type = 'dock', -- if own_window true options are: normal/override/dock/desktop/panel
+	
+	--Draw shades?
+	draw_shades = false,
+
+	--Draw outlines?
+	draw_outline =  false,
+
+	-- Draw borders around text
+	draw_borders = false,
+
+	draw_graph_borders = false,
+
+	override_utf8_locale = true,
+
+	use_xft = true,
+	--xftfont Caviar Dreams:size=8
+	xftfont = 'DejaVu Sans:size=8',
+	
+	xftalpha = 0.8,
+	text_buffer_size = 2048,
+	uppercase = false,
+
+	default_color = '#fcfcfc',
+	color1 = '#fcfcfc',
+	color2 = '#fcfcfc',
+	color3 = '#fcfcfc',
+	color4 = '#fcfcfc',
+	lua_load = '~/.conky/conky_HUD.lua',
+	lua_draw_hook_post = 'main',
+}
+
+conky.text = [[
+${goto -20}${color4}${font size=6}${time %b %e %Y}
+${voffset 15}
+${goto 85}${font Neuropolitical:size=6,weight:bold}${color4}Sistema
+${goto 85}${font Neuropolitical:size=6,weight:bold}${color3}free:
+${goto 85}${font Neuropolitical:size=2,weight:bold}${color3}${offset 5}${voffset -4}${fs_free /}
+
+${voffset -50}
+${goto 35}${font Neuropolitical:size=6,weight:bold}${color4}Mem
+
+${voffset -45}
+${goto 180}${font Neuropolitical:size=6,weight:bold}${color4}Cpu
+${image ~/.conky/tux.png -p 140,110 -s 85x85}
+
+${font Neuropolitical:size=20}${voffset 1}${time %H:%M:%S}
+]];
